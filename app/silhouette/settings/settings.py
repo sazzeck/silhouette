@@ -6,13 +6,11 @@ from pathlib import Path
 from utils import Config as config
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-# Application definition
-
 INSTALLED_APPS = [
+    "user",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,9 +52,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "silhouette.wsgi.application"
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
@@ -66,31 +61,20 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "user.BaseUser"
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
 
 MEDIA_URL = "/media/"
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config.SECRET_KEY
 
-# SECURITY WARNING: don't run with debug turned on in production!
 if sys.argv[1] != 'runserver':
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, ""),
+        os.path.join(BASE_DIR, "static"),
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
