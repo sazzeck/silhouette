@@ -52,13 +52,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "silhouette.wsgi.application"
 
+
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%d.%m.%Y %H:%M",
 }
 
-
 DATE_INPUT_FORMATS = ["%d.%m.%Y %H:%M"]
 DATE_FORMAT = ["%d.%m.%Y %H:%M"]
+
 
 LANGUAGE_CODE = "en-us"
 

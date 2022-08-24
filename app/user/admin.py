@@ -1,4 +1,3 @@
-from lib2to3.pytree import Base
 from django.contrib.admin import register, ModelAdmin
 
 from .models import BaseUser
