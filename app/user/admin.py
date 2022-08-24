@@ -1,3 +1,32 @@
-from django.contrib import admin
+from django.contrib.admin import register, ModelAdmin
 
-# Register your models here.
+from .models import BaseUser
+
+
+@register(BaseUser)
+class BaseUserAdmin(ModelAdmin):
+    list_display = (
+        "id",
+        "username",
+        "last_login",
+        "date_joined",
+        "is_active",
+        "is_staff",
+        "is_online",
+    )
+
+    list_display_links = ("username",)
+
+    search_fields = ("username",)
+
+    list_filter = (
+        "is_online",
+        "is_active",
+        "is_staff",
+        "last_login",
+    )
+
+    list_editable = (
+        "is_active",
+        "is_staff",
+    )
