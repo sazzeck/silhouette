@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class BaseCustomAbstractUserManager(UserManager):
+    use_in_migrations = True
 
     def _create_user(self, username, password, **extra_fields):
         if not username:

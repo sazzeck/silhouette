@@ -11,6 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 INSTALLED_APPS = [
     "user",
+    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -51,6 +52,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "silhouette.wsgi.application"
 
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%d.%m.%Y %H:%M",
+}
+
+
+DATE_INPUT_FORMATS = ["%d.%m.%Y %H:%M"]
+DATE_FORMAT = ["%d.%m.%Y %H:%M"]
 
 LANGUAGE_CODE = "en-us"
 
