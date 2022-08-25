@@ -8,7 +8,6 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
-
 class BaseCustomAbstractUserManager(UserManager):
     use_in_migrations = True
 
@@ -55,13 +54,15 @@ class BaseCustomAbstractUser(AbstractBaseUser, PermissionsMixin):
 
     first_name = models.CharField(
         _("first name"),
-        max_length=150,
+        max_length=50,
+        default=_("unknown"),
         blank=True
     )
 
     last_name = models.CharField(
         _("last name"),
-        max_length=150,
+        max_length=50,
+        default=_("unknown"),
         blank=True
     )
 
