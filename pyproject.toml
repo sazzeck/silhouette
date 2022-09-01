@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = [
     "sazzeck <sazzeckprog@gmail.com>",
-    "semlish <semlishprog@gmail.com>"
 ]
 
 [tool.poetry.dependencies]
@@ -15,6 +14,8 @@ Django = "^4.1"
 djangorestframework = "^3.13.1"
 aiogram = "^2.22.1"
 aiohttp = "^3.8.1"
+django-redis = "^5.2.0"
+aioredis = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^5.0.4"

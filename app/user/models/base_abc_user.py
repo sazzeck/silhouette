@@ -41,7 +41,6 @@ class BaseCustomAbstractUserManager(UserManager):
 
 
 class BaseCustomAbstractUser(AbstractBaseUser, PermissionsMixin):
-
     username = models.CharField(
         _("username"),
         max_length=25,
@@ -55,15 +54,15 @@ class BaseCustomAbstractUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(
         _("first name"),
         max_length=50,
-        default=_("unknown"),
-        blank=True
+        null=True,
+        blank=True,
     )
 
     last_name = models.CharField(
         _("last name"),
         max_length=50,
-        default=_("unknown"),
-        blank=True
+        null=True,
+        blank=True,
     )
 
     date_joined = models.DateTimeField(

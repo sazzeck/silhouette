@@ -1,7 +1,4 @@
-from django.shortcuts import get_object_or_404
-
-from rest_framework import viewsets
-from rest_framework.response import Response
+from rest_framework import viewsets, mixins
 
 from user.models import BaseUser
 from user.serializers import (
@@ -10,15 +7,21 @@ from user.serializers import (
 )
 
 
-class BaseUserViewSet(viewsets.ViewSet):
+class BaseUserListViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    viewsets.GenericViewSet,
+):
+    queryset = BaseUser.objects.all()
+    serializer_class = BaseUserListSerializer
 
-    def user_list(self, request):
-        queryset = BaseUser.objects.all()
-        serializer = BaseUserListSerializer(queryset, many=True)
-        return Response(serializer.data)
 
-    def user_detail(self, request, id=None):
-        queryset = BaseUser.objects.all()
-        user = get_object_or_404(queryset, id=id)
-        serializer = BaseUserDetailSerializer(user)
-        return Response(serializer.data)
+class BaseUserDetailViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet,
+):
+    lookup_field = "id"
+    queryset = BaseUser.objects.all()
+    serializer_class = BaseUserDetailSerializer

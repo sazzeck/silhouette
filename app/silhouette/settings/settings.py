@@ -8,6 +8,7 @@ from utils import Config as config
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+RUN_SERVER_PORT = 8080
 
 INSTALLED_APPS = [
     "main",

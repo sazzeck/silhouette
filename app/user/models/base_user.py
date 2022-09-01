@@ -5,7 +5,6 @@ from .base_abc_user import BaseCustomAbstractUser
 
 
 class BaseUser(BaseCustomAbstractUser):
-
     is_online = models.BooleanField(
         _("is online"),
         default=False,

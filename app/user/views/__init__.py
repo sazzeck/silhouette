@@ -1,8 +1,10 @@
 from .base_user import (
-    BaseUserViewSet,
+    BaseUserListViewSet,
+    BaseUserDetailViewSet,
 )
 
 
 __all__ = [
-    "BaseUserViewSet",
+    "BaseUserListViewSet",
+    "BaseUserDetailViewSet",
 ]

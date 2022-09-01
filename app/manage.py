@@ -3,6 +3,9 @@
 import os
 import sys
 
+from django.core.management.commands.runserver import Command as runserver
+from django.conf import settings
+
 
 def main():
     """Run administrative tasks."""
@@ -15,6 +18,16 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    if "runserver" in sys.argv:
+        import django
+        django.setup()
+        runserver.default_port = settings.RUN_SERVER_PORT
+
+    if "runbot" in sys.argv:
+        from bot import SilhouetteBot
+
+        return SilhouetteBot.run()
+
     execute_from_command_line(sys.argv)
 
 
