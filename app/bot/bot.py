@@ -4,13 +4,15 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from .plugins import register_handlers
 
+from utils import Config
+
 
 class SilhouetteBot:
 
     storage = MemoryStorage()
 
     bot = Bot(
-        token="5430190554:AAGLLmpD23SXy4j10ETpt29LU34AkeTeHMc",
+        token=Config.BOT_TOKEN,
         validate_token=True,
         timeout=30,
     )
