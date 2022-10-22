@@ -11,6 +11,11 @@
     <title>{{title}}</title>
 </head>
 <body>
+    <header>
+        <a href="{%url 'main'%}" class="logo">Silhouette</a>
+        {%block header_nav-bar%}
+        {%endblock%}
+    </header>
     {%block content%}
     {%endblock%}
 </body>

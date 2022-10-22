@@ -1,4 +1,4 @@
-import typing
+import typing as t
 from functools import lru_cache
 from os import environ
 from pathlib import Path
@@ -9,8 +9,8 @@ load_dotenv()
 
 
 class ConfigMeta(type):
-    def resolve_value(cls, value: str):
-        _map: typing.Dict[str, typing.Callable[[str], typing.Any]] = {
+    def resolve_value(cls, value: str) -> t.Any:
+        _map: t.Dict[str, t.Callable[[str], t.Any]] = {
             "bool": bool,
             "int": int,
             "float": float,
@@ -22,7 +22,7 @@ class ConfigMeta(type):
         return _map[(v := value.split(":", maxsplit=1))[0]](v[1])
 
     @lru_cache()
-    def __getattr__(cls, name):
+    def __getattr__(cls, name) -> t.Any:
         return cls.resolve_value(environ[name])
 
 

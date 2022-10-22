@@ -1,0 +1,49 @@
+.nav-bar_menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar_info {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    margin: 0 20px;
+}
+
+.nav-bar_info span {
+    font-size: 18px;
+}
+
+.nav-bar_info p {
+    color: #1B263B;
+    line-height: 32px;
+    padding: 0 10px;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+}
+
+.sing_button {
+    text-decoration: none;
+    font-family: 'Strait';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    font-size: 20px;
+    padding: 5px 15px;
+    height: 32px;
+    border: none;
+    border-radius: 50px 50px;
+    color: #415A77;
+    transition: all 1s ease;
+}
+
+.sing_button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.35);
+}
+
+.sing_button:active {
+    transform: scale(1.05);
+    box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.35);
+}

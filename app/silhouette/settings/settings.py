@@ -56,37 +56,49 @@ WSGI_APPLICATION = "silhouette.wsgi.application"
 
 
 REST_FRAMEWORK = {
-    'DATETIME_FORMAT': "%d.%m.%Y %H:%M",
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DATETIME_FORMAT": "%d.%m.%Y %H:%M",
 }
+
 
 DATE_INPUT_FORMATS = ["%d.%m.%Y %H:%M"]
 DATE_FORMAT = ["%d.%m.%Y %H:%M"]
 
-
-LANGUAGE_CODE = "en-us"
-
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Kiev"
 
 USE_I18N = True
 
 USE_TZ = True
 
 
+CSRF_USE_SESSIONS = True
+
+
+LANGUAGE_CODE = "en-us"
+
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 
 AUTH_USER_MODEL = "user.BaseUser"
 
+LOGIN_URL = "account/sing_in/"
 
-STATIC_URL = "static/"
-
-MEDIA_URL = "/media/"
 
 SECRET_KEY = config.SECRET_KEY
 
+
+STATIC_URL = "/static/"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 if sys.argv[1] != 'runserver':
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static"),
+        os.path.join(BASE_DIR, "main/static"),
+        os.path.join(BASE_DIR, "user/static"),
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    MEDIA_ROOT = os.path.join(BASE_DIR, "media")

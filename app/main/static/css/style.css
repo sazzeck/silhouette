@@ -377,6 +377,17 @@ html {
          url('../fonts/strait-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+/*
+main colors:
+
+#0D1B2A;
+#1B263B;
+#415A77;
+#778DA9;
+#E0E1DD;
+
+*/
+
 body {
     width: 100%;
     height: 100%;
@@ -389,4 +400,28 @@ body {
 
     text-align: center;
     letter-spacing: 0.1em;
+    color: #415A77;
+
+    background-color: #E0E1DD;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+}
+
+.logo {
+    line-height: 35px;
+    text-decoration: none;
+    color: #415A77;
+    font-size: 35px;
+    font-weight: 700;
+    transition: all 1s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.35);
 }

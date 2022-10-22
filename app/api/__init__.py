@@ -1,8 +1,9 @@
-from .api import SilhouetteAPI
-from .users import UsersAPI
+from .api import API, SilhouetteError
+from .user import SilhouetteUser
 
 
 __all__ = [
-    "SilhouetteAPI",
-    "UsersAPI",
+    "API",
+    "SilhouetteError",
+    "SilhouetteUser",
 ]

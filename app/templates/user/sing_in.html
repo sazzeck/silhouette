@@ -1,0 +1,34 @@
+{%extends 'index.html'%}
+
+{%load static%}
+
+{%block extrahead%}
+<link rel="stylesheet" href="{%static 'css/user/sing_in.css'%}">
+{%endblock%}
+
+{%block header_nav-bar%}
+{%endblock%}
+
+{%block content%}
+    <div class="auth-wrapper">
+        <div class="auth-header">
+            <h1 class="auth-header-title">Login</h1>
+        </div>
+        <div class="auth-content">
+            <form method="post">
+                {%csrf_token%}
+                {%for f in form%}
+                <div class="auth-form-group">
+                    <lable class="auth-form-label" for="{{f.id_for_label}}">{{f.label}}:</lable>{{f}}
+                </div>
+                {%endfor%}
+                <button class="sing_in" type="submit">Sing in</button>
+            </form>
+        <div class="form-error">{{form.non_field_errors}}</div>
+        </div>
+        <div class="auth-footer">
+            <p>Don't have an account?</p>
+            <a href="https://t.me/silhouette_bot">Create account</a>
+        </div>
+    </div>
+{%endblock%}

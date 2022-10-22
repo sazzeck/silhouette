@@ -1,25 +1,24 @@
 from aiogram import Bot, Dispatcher, executor
-# from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
-from .plugins import register_handlers
-
+from .core import process_command_dependencies
 from utils import Config
 
 
 class SilhouetteBot:
 
-    storage = MemoryStorage()
+    storage: MemoryStorage = MemoryStorage()
 
-    bot = Bot(
+    bot: Bot = Bot(
         token=Config.BOT_TOKEN,
+        parse_mode="HTML",
         validate_token=True,
         timeout=30,
     )
 
-    dispatcher = Dispatcher(
+    dispatcher: Dispatcher = Dispatcher(
         bot=bot,
-        storage=storage
+        storage=storage,
     )
 
     Bot.set_current(bot)
@@ -27,16 +26,14 @@ class SilhouetteBot:
 
     @staticmethod
     async def on_startup(dispatcher: Dispatcher) -> None:
-        register_handlers(dispatcher)
+        process_command_dependencies(dispatcher)
 
     @staticmethod
     async def on_shutdown(dispatcher: Dispatcher) -> None:
         dispatcher.stop_polling()
-        # await dispatcher.storage.close()
-        # await dispatcher.storage.wait_closed()
 
     @classmethod
-    def run(cls):
+    def run(cls) -> None:
         executor.start_polling(
             cls.dispatcher,
             timeout=30,

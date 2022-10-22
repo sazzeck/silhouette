@@ -1,6 +1,7 @@
 from silhouette.settings.settings import *
 
-from core.utils import Config as config
+from utils import Config as config
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

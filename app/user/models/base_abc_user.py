@@ -51,20 +51,6 @@ class BaseCustomAbstractUser(AbstractBaseUser, PermissionsMixin):
         },
     )
 
-    first_name = models.CharField(
-        _("first name"),
-        max_length=50,
-        null=True,
-        blank=True,
-    )
-
-    last_name = models.CharField(
-        _("last name"),
-        max_length=50,
-        null=True,
-        blank=True,
-    )
-
     date_joined = models.DateTimeField(
         _("date joined"),
         default=timezone.now
@@ -85,6 +71,13 @@ class BaseCustomAbstractUser(AbstractBaseUser, PermissionsMixin):
         ),
     )
 
+    password = models.CharField(
+        _("password"),
+        max_length=128,
+        null=True,
+        blank=True,
+    )
+
     objects = BaseCustomAbstractUserManager()
 
     USERNAME_FIELD = "username"
@@ -98,15 +91,3 @@ class BaseCustomAbstractUser(AbstractBaseUser, PermissionsMixin):
     @classmethod
     def get_email_field_name(cls):
         pass
-
-    @property
-    def get_firstname(self):
-        return self.first_name.strip()
-
-    @property
-    def get_lastname(self):
-        return self.last_name.strip()
-
-    @property
-    def get_fullname(self):
-        return f"{self.get_lastname} {self.get_firstname}"

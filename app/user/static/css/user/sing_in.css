@@ -1,0 +1,128 @@
+.auth-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #778DA9;
+    width: 500px;
+    height: 600px;
+    left: calc(50% - 500px/2);
+    top: calc(50% - 600px/2);
+
+    border-radius: 20px;
+}
+
+.auth-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 150px;
+    border-bottom: 10px solid #E0E1DD;
+}
+
+.auth-header-title {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 53px;
+    text-align: center;
+    letter-spacing: 0.2em;
+
+    color: #1B263B;
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.35);
+}
+
+.auth-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+}
+
+.auth-form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-family: 'Strait';
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 30px;
+}
+
+.auth-form-label {
+    font-size: 30px;
+    margin: 5px 0;
+    color: #0D1B2A;
+}
+
+.form-input {
+    text-align: center;
+    height: 50px;
+    width: 350px;
+    cursor: pointer;
+    background: #E0E1DD;
+    border: 5px solid #1B263B;
+    box-shadow: inset 0px 10px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Strait';
+    font-style: normal;
+    font-weight: 400;
+    color: #415A77;
+}
+
+.form-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1B263B;
+    line-height: 18px;
+    font-size: 18px;
+    width:  450px;
+    height: 50px;
+}
+
+.auth-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 50px;
+    padding: 0 25px;
+}
+
+.auth-footer p {
+    font-weight: 700;
+    color: #0D1B2A;
+}
+
+.auth-footer a{
+    text-decoration: none;
+    color: #E0E1DD;
+}
+
+
+
+.sing_in {
+    margin-top: 25px;
+    text-decoration: none;
+    font-family: 'Strait';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    font-size: 20px;
+    padding: 5px 15px;
+    height: 32px;
+    border: none;
+    border-radius: 50px 50px;
+    color: #415A77;
+    transition: all 1s ease;
+}
+
+.sing_in:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.35);
+}
+
+.sing_in:active {
+    transform: scale(1.05);
+    box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.35);
+}

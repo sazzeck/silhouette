@@ -1,30 +1,26 @@
+import typing as t
 import aiohttp
 
-from json import JSONDecodeError
+from .auth import AuthAPI
+from .handlers import HandleResponse
+from .exceptions import SilhouetteError
+
+from utils import Config as config
 
 
-class SilhouetteError(Exception):
-    pass
+class API(HandleResponse):
+    API_PATH: t.Optional[str] = config.API_PATH
+    NEXT_PATH: t.Optional[str] = None
 
+    AUTH = AuthAPI()
 
-class SilhouetteAPI:
-    API_PATH = "http://127.0.0.1:8080/api/silhouette/"
-    NEXT_PATH = None
-
-    def get_base_path(self):
+    @property
+    def get_base_path(self) -> t.Optional[str]:
         if self.NEXT_PATH is None:
             path = self.API_PATH
-        if self.NEXT_PATH is not None:
+        else:
             path = self.API_PATH + self.NEXT_PATH
         return path
-
-    async def _handle_response(self, response):
-        if response.status > 400:
-            raise SilhouetteError
-        try:
-            return await response.json()
-        except JSONDecodeError:
-            raise SilhouetteError
 
     async def _session_request_methods(
         self,
@@ -32,26 +28,27 @@ class SilhouetteAPI:
         method: str,
         *,
         data: dict = None
-    ):
-        async with aiohttp.ClientSession() as session:
+    ) -> t.Optional[t.Dict[str, t.Optional[str]]]:
+        login = self.AUTH._get_login
+        password = self.AUTH._get_password
+        async with aiohttp.ClientSession(auth=aiohttp.BasicAuth(login, password)) as session:
             if data is None:
                 try:
                     if method.lower() == "get":
-                        reuqest_method = await session.get(path)
+                        request_method = await session.get(path)
                     if method.lower() == "delete":
-                        reuqest_method = await session.delete(path)
+                        request_method = await session.delete(path)
                 except ValueError:
                     raise SilhouetteError
-            if data is not None:
-                if isinstance(data, dict):
-                    try:
-                        if method.lower() == "post":
-                            reuqest_method = await session.post(path, data=data)
-                        if method.lower() == "put":
-                            reuqest_method = await session.put(path, data=data)
-                    except TypeError:
-                        raise SilhouetteError
-                    except ValueError:
-                        raise SilhouetteError
-            async with reuqest_method as response:
+            else:
+                try:
+                    if method.lower() == "post":
+                        request_method = await session.post(path, data=data)
+                    if method.lower() == "put":
+                        request_method = await session.put(path, data=data)
+                except TypeError:
+                    raise SilhouetteError
+                except ValueError:
+                    raise SilhouetteError
+            async with request_method as response:
                 return await self._handle_response(response)
